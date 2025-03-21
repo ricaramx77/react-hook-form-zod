@@ -14,8 +14,8 @@ const OnboardingPasswordForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      //await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log(data);
+      alert('Form submitted successfully!');
     } catch (error) {
       console.log('error', error);
     }
@@ -23,6 +23,21 @@ const OnboardingPasswordForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label htmlFor="username">Username</label>
+        <input id="username" type="text" {...register('username')} />
+        {errors.username && <span style={{ color: 'red' }}>{errors.username.message}</span>}
+      </div>
+      <div>
+        <label htmlFor="firstName">First Name</label>
+        <input id="firstName" type="text" {...register('firstName')} />
+        {errors.firstName && <span style={{ color: 'red' }}>{errors.firstName.message}</span>}
+      </div>
+      <div>
+        <label htmlFor="lastName">Last Name</label>
+        <input id="lastName" type="text" {...register('lastName')} />
+        {errors.lastName && <span style={{ color: 'red' }}>{errors.lastName.message}</span>}
+      </div>
       <div>
         <label htmlFor="password">Password</label>
         <input id="password" type="password" {...register('password')} />
@@ -32,6 +47,18 @@ const OnboardingPasswordForm: React.FC = () => {
         <label htmlFor="confirmPassword">Confirm Password</label>
         <input id="confirmPassword" type="password" {...register('confirmPassword')} />
         {errors.confirmPassword && <span style={{ color: 'red' }}>{errors.confirmPassword.message}</span>}
+      </div>
+      <div>
+        <label htmlFor="repeatPassword">Repeat Password</label>
+        <input id="repeatPassword" type="password" {...register('repeatPassword')} />
+        {errors.repeatPassword && <span style={{ color: 'red' }}>{errors.repeatPassword.message}</span>}
+      </div>
+      <div>
+        <label htmlFor="terms">
+          <input id="terms" type="checkbox" {...register('terms')} />
+          Accept Terms and Conditions
+        </label>
+        {errors.terms && <span style={{ color: 'red' }}>{errors.terms.message}</span>}
       </div>
       <button type="submit">Submit</button>
     </form>
